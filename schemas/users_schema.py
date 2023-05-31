@@ -35,4 +35,5 @@ class User(UserBase):
     articles: List[Article] = []
     
     class Config:
+        """The config class for the schemas"""
         orm_mode = True
