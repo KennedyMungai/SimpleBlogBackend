@@ -13,7 +13,7 @@ class UserBase(BaseModel):
         BaseModel (Pydantic): The base class for the schema data
     """
     email: EmailStr
-    
+
 
 class UserCreate(UserBase):
     """The schema for the user creation
@@ -22,8 +22,8 @@ class UserCreate(UserBase):
         UserBase (UserBase): The base schema for the user data
     """
     password: str
-    
-    
+
+
 class User(UserBase):
     """The template of the user data in the database
 
@@ -33,7 +33,7 @@ class User(UserBase):
     id: int
     is_active: bool
     articles: List[Article] = []
-    
+
     class Config:
         """The config class for the schemas"""
         orm_mode = True
