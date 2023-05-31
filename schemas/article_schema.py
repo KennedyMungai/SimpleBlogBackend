@@ -1,0 +1,1 @@
+"""The schema file for the articles"""
