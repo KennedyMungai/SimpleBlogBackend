@@ -12,3 +12,5 @@ MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD")
 MYSQL_HOST = os.environ.get("MYSQL_HOST")
 MYSQL_DB = os.environ.get("MYSQL_DB")
 MYSQL_PORT = os.environ.get("MYSQL_PORT")
+
+MYSQL_URL = f'mysql+pymysql://{MYSQL_USERNAME}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}'
