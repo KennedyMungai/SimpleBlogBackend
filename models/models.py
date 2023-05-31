@@ -27,6 +27,11 @@ class User(Base):
     
     
 class Article(Base):
+    """The model for the article data
+
+    Args:
+        Base (Declarative Base): No Idea
+    """
     __tablename__ = 'articles'
     
     id = Column(Integer, primary_key=True, index=True)
