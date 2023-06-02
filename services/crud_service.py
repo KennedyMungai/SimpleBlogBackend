@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from models.models import Article, User
 from schemas.article_schema import *
-from schemas.users_schema import *
+from schemas.users_schema import User, UserCreate
 
 hash = hashlib.sha256()
 
@@ -42,3 +42,24 @@ def get_users(_db: Session, skip: int = 0, limit: int = 100):
         User[]: An array of users
     """
     return _db.query(User).offset(skip).limit(limit).all()
+
+
+def create_user(_db: Session, _user: UserCreate):
+    """A function to add users to the database
+
+    Args:
+        _db (Session): The database session
+        _user (UserCreate): The data needed to create users
+
+    Returns:
+        User: The created user
+    """
+    hash.update(_user.password.encode('utf-8'))
+    hashed_password = hash.hexdigest()
+    
+    _db_user = User(_user.email, hashed_password)
+    _db.add(_db_user)
+    _db.commit()
+    _db.refresh(_db_user)
+
+    return _db_user
