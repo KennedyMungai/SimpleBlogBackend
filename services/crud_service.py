@@ -116,3 +116,20 @@ def update_article(_db: Session, _article_id: int, _updated_fields: ArticleUpdat
     _db.commit()
 
     return _updated_fields
+
+
+def delete_article(_db:Session, _article: Article):
+    """The function to delete an article from the database.
+
+    This function is used to delete an article from the database. It is used in the
+    delete_article_by_id function.
+
+    Args:
+        _db (Session): The database session
+        _article (Article): The article to be deleted
+
+    Returns:
+        _article: The deleted article
+    """
+    _db.delete(_article)
+    _db.commit()
