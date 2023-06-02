@@ -6,7 +6,7 @@ from sqlalchemy import update
 from sqlalchemy.orm import Session
 
 from models.models import Article, User
-from schemas.article_schema import *
+from schemas.article_schema import ArticleCreate
 from schemas.users_schema import User, UserCreate
 
 hash = hashlib.sha256()
