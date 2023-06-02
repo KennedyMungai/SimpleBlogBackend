@@ -24,6 +24,11 @@ Base = declarative_base()
 
 # Database dependency
 def get_db():
+    """The database dependency
+
+    Yields:
+        _db: The database session
+    """
     _db = SessionLocal()
     try:
         yield _db
