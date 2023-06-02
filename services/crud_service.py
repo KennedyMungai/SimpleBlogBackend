@@ -15,3 +15,16 @@ hash = hashlib.sha256()
 def get_user(_db: Session, user_id: int):
     """Get user by id"""
     return _db.query(User).filter(User.id == user_id).first()
+
+
+def get_user_by_email(_db: Session, _email: str):
+    """A function to retrieve the user via the emails
+
+    Args:
+        _db (Session): The database session
+        _email (str): The email address for the user
+
+    Returns:
+        User: The user who used that email for registration
+    """
+    return _db.query(User).filter(User.email == _email).first()
