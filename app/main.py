@@ -1,6 +1,10 @@
 """The entrypoint for the application script"""
-from fastapi import FastAPI
+from typing import List
 
+from fastapi import Depends, FastAPI, HTTPException, status
+from sqlalchemy.orm import Session
+
+from database.db import get_db, engine
 
 app = FastAPI(name="SImple Blog Project", description="A simple blog project", version="0.1.0")
 
