@@ -19,7 +19,7 @@ async def root():
 
 
 @app.post("/users", name='Create User', description='Create a new user', response_model=User)
-async def create_user(_user: UserCreate, _db: Session = Depends(get_db)):
+async def create_user_endpoint(_user: UserCreate, _db: Session = Depends(get_db)):
     """An endpoint to create the usr in the
 
     Args:
