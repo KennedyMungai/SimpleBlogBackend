@@ -28,3 +28,17 @@ def get_user_by_email(_db: Session, _email: str):
         User: The user who used that email for registration
     """
     return _db.query(User).filter(User.email == _email).first()
+
+
+def get_users(_db: Session, skip: int = 0, limit: int = 100):
+    """Retrieves all the users from a database using some simple pagination logic
+
+    Args:
+        _db (Session): The database session
+        skip (int, optional): The number of users to ski. Defaults to 0.
+        limit (int, optional): The number of users to retrieve. Defaults to 100.
+
+    Returns:
+        User[]: An array of users
+    """
+    return _db.query(User).offset(skip).limit(limit).all()
