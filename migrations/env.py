@@ -5,7 +5,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from database.db import Base
+from models.models import Base
 
 MYSQL_URL = os.environ.get("MYSQL_URL")
 
