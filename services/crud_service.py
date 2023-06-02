@@ -6,7 +6,7 @@ from sqlalchemy import update
 from sqlalchemy.orm import Session
 
 from models.models import Article, User
-from schemas.article_schema import ArticleCreate
+from schemas.article_schema import ArticleCreate, ArticleUpdate
 from schemas.users_schema import User, UserCreate
 
 hash = hashlib.sha256()
@@ -96,3 +96,23 @@ def create_article(_db: Session, _article: ArticleCreate, _user_id: int):
     _db.refresh(_db_article)
 
     return _db_article
+
+
+def update_article(_db: Session, _article_id: int, _updated_fields: ArticleUpdate):
+    """A function to update an article in the database
+
+    Args:
+        _db (Session): The database session
+        _article_id (int): The id of the article to be updated
+        _updated_fields (ArticleUpdate): The data to be used to update the article
+
+    Returns:
+        _updated_fields: ArticleUpdate
+    """
+    _db.execute(
+        update(Article).where(Article.id == _article_id).values(_updated_fields)
+    )
+    _db.flush()
+    _db.commit()
+
+    return _updated_fields
