@@ -77,3 +77,22 @@ def get_articles(_db: Session, _skip:int = 0, _limit: int = 100):
         Article[]: An array of articles
     """
     return _db.query(Article).offset(_skip).limit(_limit).all()
+
+
+def create_article(_db: Session, _article: ArticleCreate, _user_id: int):
+    """A function to add articles to the database
+
+    Args:
+        _db (Session): The database session
+        _article (ArticleCreate): The data needed to create articles
+        _user_id (int): The user id of the user who created the article
+
+    Returns:
+        Article: The created article
+    """
+    _db_article = Article(_article.title, _article.content, _user_id)
+    _db.add(_db_article)
+    _db.commit()
+    _db.refresh(_db_article)
+
+    return _db_article
