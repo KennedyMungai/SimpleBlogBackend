@@ -63,3 +63,17 @@ def create_user(_db: Session, _user: UserCreate):
     _db.refresh(_db_user)
 
     return _db_user
+
+
+def get_articles(_db: Session, _skip:int = 0, _limit: int = 100):
+    """A function to retrieve all the articles from the database
+
+    Args:
+        _db (Session): The database session
+        _skip (int, optional): The number of articles to skip. Defaults to 0.
+        _limit (int, optional): The number of articles to retrieve. Defaults to 100.
+
+    Returns:
+        Article[]: An array of articles
+    """
+    return _db.query(Article).offset(_skip).limit(_limit).all()
