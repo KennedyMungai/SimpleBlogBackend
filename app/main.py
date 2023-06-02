@@ -6,6 +6,9 @@ from sqlalchemy.orm import Session
 
 from database.db import engine, get_db
 
+from schemas.users_schema import User
+from schemas.article_schema import Article
+
 app = FastAPI(name="SImple Blog Project", description="A simple blog project", version="0.1.0")
 
 
