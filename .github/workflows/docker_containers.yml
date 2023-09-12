@@ -12,6 +12,12 @@ jobs:
         container:
             image: python:3.10
         runs-on: ubuntu-latest
+        services:
+            mysql: 
+                image: mysql
+                env:
+                    MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+                    MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
         steps:
             - name: Get Code
               uses: actions/checkout@v4
